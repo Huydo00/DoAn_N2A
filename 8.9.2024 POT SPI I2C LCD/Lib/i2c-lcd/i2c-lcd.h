@@ -1,8 +1,6 @@
-/** 
-Edit by modify: Ngoc Hang 
-**/
-
 #include "stm32f1xx_hal.h"
+#include "string.h"
+#include "stdio.h"
 
 void lcd_init (void);   // initialize lcd
 
@@ -12,6 +10,8 @@ void lcd_send_data (char data);  // send data to the lcd
 
 void lcd_send_string (char *str);  // send string to the lcd
 
-void lcd_clear_display (void);	//clear display lcd
+void lcd_put_cur(int row, int col);  // put cursor at the entered position row (0 or 1), col (0-15);
 
-void lcd_goto_XY (int row, int col); //set proper location on screen
+void lcd_clear (void);
+
+void lcd_send_number(int number);                // ghi chu so

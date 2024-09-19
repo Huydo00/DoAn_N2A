@@ -24,7 +24,7 @@
 #include <math.h>
 #include "string.h"
 #include "stdio.h"
-#include "LCD16x2.h"
+#include "i2c-lcd.h"
 
 
 uint32_t readAdc8;
@@ -112,14 +112,14 @@ int main(void)
   MX_ADC1_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-	LCD_Init();
-	adc1();
-	checkAdc8 = adc1();
-	LCD_Clear();
-	LCD_Location(0,0);
-	LCD_Write_String("VALUE POT");
-	LCD_Location(1,0);
-	LCD_Write_Number(adc1());
+	HAL_ADC_Start(&hadc1);
+  HAL_ADC_PollForConversion(&hadc1, 10);
+	readAdc8 = HAL_ADC_GetValue(&hadc1);
+	lcd_init();
+	lcd_put_cur(0,0);
+	lcd_send_string("POT: ");
+	lcd_put_cur(1,0);
+	lcd_send_number(readAdc8);
 
   /* USER CODE END 2 */
 
@@ -130,13 +130,15 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		if(checkAdc8 != adc1()){
-			LCD_Clear();
-			LCD_Location(0,0);
-			LCD_Write_String("VALUE POT");
-			LCD_Location(1,0);
-			LCD_Write_Number(adc1());
-			
+	 readAdc8 = HAL_ADC_GetValue(&hadc1);
+		
+		if(checkAdc8 != readAdc8){
+			HAL_Delay(100);
+			lcd_clear();
+			lcd_put_cur(0,0);
+			lcd_send_string("POT: ");
+			lcd_put_cur(1,0);
+			lcd_send_number(readAdc8);
 			checkAdc8 = adc1();
 			}
 	

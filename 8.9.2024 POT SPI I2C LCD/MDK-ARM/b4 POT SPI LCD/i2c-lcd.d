@@ -28,3 +28,5 @@ b4 pot spi lcd\i2c-lcd.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flas
 b4 pot spi lcd\i2c-lcd.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 b4 pot spi lcd\i2c-lcd.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 b4 pot spi lcd\i2c-lcd.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+b4 pot spi lcd\i2c-lcd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+b4 pot spi lcd\i2c-lcd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

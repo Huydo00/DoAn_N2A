@@ -1,11 +1,10 @@
-/** 
-Edit by modify: Ngoc Hang 
-**/
+
+/** Put this in the src folder **/
 
 #include "i2c-lcd.h"
 extern I2C_HandleTypeDef hi2c1;  // change your handler here accordingly
 
-#define SLAVE_ADDRESS_LCD 0x7E // change this according to ur setup
+#define SLAVE_ADDRESS_LCD 0x4E // change this according to ur setup
 
 void lcd_send_cmd (char cmd)
 {
@@ -33,22 +32,55 @@ void lcd_send_data (char data)
 	HAL_I2C_Master_Transmit (&hi2c1, SLAVE_ADDRESS_LCD,(uint8_t *) data_t, 4, 100);
 }
 
+void lcd_clear (void)
+{
+	lcd_send_cmd (0x80);
+	for (int i=0; i<70; i++)
+	{
+		lcd_send_data (' ');
+	}
+}
+
+void lcd_put_cur(int row, int col)
+{
+    switch (row)
+    {
+        case 0:
+            col |= 0x80;
+            break;
+        case 1:
+            col |= 0xC0;
+            break;
+    }
+
+    lcd_send_cmd (col);
+}
+
+
 void lcd_init (void)
 {
-	lcd_send_cmd (0x33); /* set 4-bits interface */
-	lcd_send_cmd (0x32);
-	HAL_Delay(50);
-	lcd_send_cmd (0x28); /* start to set LCD function */
-	HAL_Delay(50);
-	lcd_send_cmd (0x01); /* clear display */
-	HAL_Delay(50);
-	lcd_send_cmd (0x06); /* set entry mode */
-	HAL_Delay(50);
-	lcd_send_cmd (0x0c); /* set display to on */	
-	HAL_Delay(50);
-	lcd_send_cmd (0x02); /* move cursor to home and set data address to 0 */
-	HAL_Delay(50);
-	lcd_send_cmd (0x80);
+	// 4 bit initialisation
+	HAL_Delay(50);  // wait for >40ms
+	lcd_send_cmd (0x30);
+	HAL_Delay(5);  // wait for >4.1ms
+	lcd_send_cmd (0x30);
+	HAL_Delay(1);  // wait for >100us
+	lcd_send_cmd (0x30);
+	HAL_Delay(10);
+	lcd_send_cmd (0x20);  // 4bit mode
+	HAL_Delay(10);
+
+  // dislay initialisation
+	lcd_send_cmd (0x28); // Function set --> DL=0 (4 bit mode), N = 1 (2 line display) F = 0 (5x8 characters)
+	HAL_Delay(1);
+	lcd_send_cmd (0x08); //Display on/off control --> D=0,C=0, B=0  ---> display off
+	HAL_Delay(1);
+	lcd_send_cmd (0x01);  // clear display
+	HAL_Delay(1);
+	HAL_Delay(1);
+	lcd_send_cmd (0x06); //Entry mode set --> I/D = 1 (increment cursor) & S = 0 (no shift)
+	HAL_Delay(1);
+	lcd_send_cmd (0x0C); //Display on/off control --> D = 1, C and B = 0. (Cursor and blink, last two bits)
 }
 
 void lcd_send_string (char *str)
@@ -56,21 +88,9 @@ void lcd_send_string (char *str)
 	while (*str) lcd_send_data (*str++);
 }
 
-void lcd_clear_display (void)
+void lcd_send_number(int number)                 // ghi chu so
 {
-	lcd_send_cmd (0x01); //clear display
-}
-
-void lcd_goto_XY (int row, int col)
-{
-	uint8_t pos_Addr;
-	if(row == 1) 
-	{
-		pos_Addr = 0x80 + row - 1 + col;
-	}
-	else
-	{
-		pos_Addr = 0x80 | (0x40 + col);
-	}
-	lcd_send_cmd(pos_Addr);
+	char buffer[8];
+	sprintf(buffer, "%d", number);
+	lcd_send_string(buffer);
 }

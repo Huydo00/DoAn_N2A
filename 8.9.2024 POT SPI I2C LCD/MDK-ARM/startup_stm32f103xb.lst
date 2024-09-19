@@ -473,11 +473,11 @@ ARM Macro Assembler    Page 8
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend="b4 pot spi lcd\startup_stm32f103xb.d" -o"b4 pot spi lcd\startup_s
-tm32f103xb.o" -I.\RTE\_b4_POT_SPI_LCD -IC:\Users\GIGABYTE\AppData\Local\Arm\Pac
-ks\ARM\CMSIS\5.7.0\CMSIS\Core\Include -IC:\Users\GIGABYTE\AppData\Local\Arm\Pac
-ks\Keil\STM32F1xx_DFP\2.4.1\Device\Include --predefine="__UVISION_VERSION SETA 
-531" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --predefine="
-_RTE_ SETA 1" --list=startup_stm32f103xb.lst startup_stm32f103xb.s
+tm32f103xb.o" -I.\RTE\_b4_POT_SPI_LCD -IC:\Users\hhuys\AppData\Local\Arm\Packs\
+ARM\CMSIS\5.7.0\CMSIS\Core\Include -IC:\Users\hhuys\AppData\Local\Arm\Packs\Kei
+l\STM32F1xx_DFP\2.4.1\Device\Include --predefine="__UVISION_VERSION SETA 531" -
+-predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --predefine="_RTE_ 
+SETA 1" --list=startup_stm32f103xb.lst startup_stm32f103xb.s
 
 
 

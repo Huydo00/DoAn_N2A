@@ -31,4 +31,4 @@ b4 pot spi lcd\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 b4 pot spi lcd\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 b4 pot spi lcd\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 b4 pot spi lcd\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-b4 pot spi lcd\main.o: ../Lib/LCD1602/LCD16x2.h
+b4 pot spi lcd\main.o: ../Lib/i2c-lcd/i2c-lcd.h
