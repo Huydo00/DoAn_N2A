@@ -1,0 +1,23 @@
+--cpu Cortex-M3
+"24 8 2024 encoder\startup_stm32f103xb.o"
+"24 8 2024 encoder\main.o"
+"24 8 2024 encoder\stm32f1xx_it.o"
+"24 8 2024 encoder\stm32f1xx_hal_msp.o"
+"24 8 2024 encoder\stm32f1xx_hal_gpio_ex.o"
+"24 8 2024 encoder\stm32f1xx_hal_tim.o"
+"24 8 2024 encoder\stm32f1xx_hal_tim_ex.o"
+"24 8 2024 encoder\stm32f1xx_hal.o"
+"24 8 2024 encoder\stm32f1xx_hal_rcc.o"
+"24 8 2024 encoder\stm32f1xx_hal_rcc_ex.o"
+"24 8 2024 encoder\stm32f1xx_hal_gpio.o"
+"24 8 2024 encoder\stm32f1xx_hal_dma.o"
+"24 8 2024 encoder\stm32f1xx_hal_cortex.o"
+"24 8 2024 encoder\stm32f1xx_hal_pwr.o"
+"24 8 2024 encoder\stm32f1xx_hal_flash.o"
+"24 8 2024 encoder\stm32f1xx_hal_flash_ex.o"
+"24 8 2024 encoder\stm32f1xx_hal_exti.o"
+"24 8 2024 encoder\system_stm32f1xx.o"
+--strict --scatter "24 8 2024 ENCODER\24 8 2024 ENCODER.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "24 8 2024 ENCODER.map" -o "24 8 2024 ENCODER\24 8 2024 ENCODER.axf"
